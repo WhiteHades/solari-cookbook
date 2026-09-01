@@ -1,6 +1,6 @@
 # 01: Witness one EPUB navigation failure
 
-Status: ready-for-agent
+Status: resolved
 
 Blocked by: None
 
@@ -10,12 +10,12 @@ Create a strict TypeScript core that generates a synthetic EPUB, runs it through
 
 ## Acceptance criteria
 
-- [ ] The generated EPUB is structurally readable by ReproPub.
-- [ ] The target, scenario, oracle, and environment are explicit inputs.
-- [ ] A known wrong-target failure produces `PRESERVED` from executed observations.
-- [ ] A corrected candidate produces `LOST`.
-- [ ] Focused core tests and type checking pass.
+- [x] The generated EPUB is structurally readable by ReproPub.
+- [x] The target, scenario, oracle, and environment are explicit inputs.
+- [x] A known wrong-target failure produces `PRESERVED` from executed observations.
+- [x] A corrected candidate produces `LOST`.
+- [x] Focused core tests and type checking pass.
 
 ## Resolution evidence
 
-Pending.
+`npm run check:core` passed on 2026-09-02: 2 tests, 0 failures. The legacy target observed `chapter-2` and returned `PRESERVED`; the decoded target observed `target section` and returned `LOST`.

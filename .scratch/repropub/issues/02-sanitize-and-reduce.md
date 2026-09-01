@@ -1,6 +1,6 @@
 # 02: Sanitize and reduce while preserving the failure
 
-Status: ready-for-agent
+Status: in-progress
 
 Blocked by: 01
 

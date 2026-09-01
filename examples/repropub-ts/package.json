@@ -1,0 +1,21 @@
+{
+  "name": "repropub",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turn hard-to-share EPUB bugs into verified minimal reproductions.",
+  "scripts": {
+    "clean": "rm -rf .build dist .tmp/repropub",
+    "build:core": "tsc -p tsconfig.core.json",
+    "typecheck:core": "tsc -p tsconfig.core.json --noEmit",
+    "test:core": "npm run build:core && node --test .build/tests/*.test.js",
+    "check:core": "npm run typecheck:core && npm run test:core"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.3"
+  }
+}
