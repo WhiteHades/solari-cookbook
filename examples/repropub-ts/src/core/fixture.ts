@@ -1,10 +1,21 @@
 import { writeZip } from "./zip.js";
+import type { NavigationScenario } from "./types.js";
 
 const PRIVATE_PROSE =
   "The private atlas names a hidden city and contains text that must not survive sanitization.";
 
 export function getSyntheticPrivateProse(): string {
   return PRIVATE_PROSE;
+}
+
+export function createSyntheticScenario(): NavigationScenario {
+  return {
+    id: "encoded-fragment-navigation",
+    navigationIndex: 1,
+    navigationHref: "chapter-2.xhtml#target%20section",
+    expectedTargetId: "target section",
+    reportedObservedTargetId: "chapter-2",
+  };
 }
 
 export function createSyntheticPublication(): Buffer {

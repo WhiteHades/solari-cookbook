@@ -56,6 +56,7 @@ export interface Publication {
 export interface NavigationScenario {
   readonly id: string;
   readonly navigationIndex: number;
+  readonly navigationHref?: string;
   readonly expectedTargetId: string;
   readonly reportedObservedTargetId: string;
 }

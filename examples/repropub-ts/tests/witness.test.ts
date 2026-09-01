@@ -2,15 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { inspectPublication } from "../src/core/epub.js";
-import { createSyntheticPublication } from "../src/core/fixture.js";
+import { createSyntheticPublication, createSyntheticScenario } from "../src/core/fixture.js";
 import { runWitness } from "../src/core/witness.js";
 
-const scenario = {
-  id: "encoded-fragment-navigation",
-  navigationIndex: 1,
-  expectedTargetId: "target section",
-  reportedObservedTargetId: "chapter-2",
-} as const;
+const scenario = createSyntheticScenario();
 
 test("witnesses a wrong-target EPUB navigation failure", async () => {
   const archive = createSyntheticPublication();

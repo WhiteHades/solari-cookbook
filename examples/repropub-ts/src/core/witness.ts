@@ -81,7 +81,12 @@ export async function runWitness(input: RunWitnessInput): Promise<WitnessResult>
 
   try {
     const publication = inspectPublication(input.archive);
-    const navigation = publication.navigation[input.scenario.navigationIndex];
+    const requestedPath = input.scenario.navigationHref?.split("#", 1)[0];
+    const navigation = input.scenario.navigationHref
+      ? publication.navigation.find((entry) => entry.href === input.scenario.navigationHref) ??
+        publication.navigation.find((entry) => entry.href.split("#", 1)[0] === requestedPath) ??
+        publication.navigation[input.scenario.navigationIndex]
+      : publication.navigation[input.scenario.navigationIndex];
     if (!navigation) {
       observation = blockedObservation(input, `navigation index ${input.scenario.navigationIndex} is missing`);
     } else {

@@ -1,6 +1,6 @@
 # 03: Publish a verifiable repro bundle
 
-Status: ready-for-agent
+Status: in-progress
 
 Blocked by: 02
 
