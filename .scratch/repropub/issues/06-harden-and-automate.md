@@ -1,6 +1,6 @@
 # 06: Harden the runnable product and automate verification
 
-Status: ready-for-agent
+Status: in-progress
 
 Blocked by: 04, 05
 

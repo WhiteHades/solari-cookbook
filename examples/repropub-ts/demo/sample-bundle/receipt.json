@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "runId": "aa00cae2f7ed93f5",
+  "createdAt": "2026-09-01T22:01:15.121Z",
+  "mode": "local",
+  "target": {
+    "id": "fixture-reader@legacy-fragment-resolver",
+    "fragmentResolution": "literal"
+  },
+  "scenario": {
+    "id": "encoded-fragment-navigation",
+    "navigationIndex": 1,
+    "navigationHref": "chapter-2.xhtml#target%20section",
+    "expectedTargetId": "target section",
+    "reportedObservedTargetId": "chapter-2"
+  },
+  "environment": {
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "locale": "en-US",
+    "timezone": "UTC"
+  },
+  "verdict": "PRESERVED",
+  "hashes": {
+    "sourcePublication": "9a32ba6abe9e1da9906512c24e81e75874097156af68750c8d4b178ac60d81f8",
+    "sanitizedPublication": "8740b890f0f951d1335af5acc72ef8381f4404ea19475e5d273a1f9b66db5af4",
+    "reducedPublication": "341765501392aa9777579ac7a93e39ff5b828223f456efc9e7d1003dc0d43902",
+    "scenario": "49d9eb88ea3956eda0d01690a2ac0b7e93f47f27dc585cd58131ffd3181aaed1"
+  },
+  "sizes": {
+    "original": 5629,
+    "sanitized": 4862,
+    "reduced": 2325
+  },
+  "reduction": {
+    "attempted": 9,
+    "accepted": 6,
+    "rejected": 3
+  },
+  "privacy": {
+    "inspectedSensitiveValues": 27,
+    "remainingSensitiveValues": 0
+  },
+  "cleanup": {
+    "attempted": 0,
+    "succeeded": 0,
+    "failed": 0,
+    "failures": []
+  },
+  "durationMs": 30.552672,
+  "artifacts": [
+    {
+      "path": "repro.epub",
+      "bytes": 2325,
+      "sha256": "341765501392aa9777579ac7a93e39ff5b828223f456efc9e7d1003dc0d43902"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1357,
+      "sha256": "3d35661b92a39a617315d2829039061bf56564f3b44ede84c4ceb85d1d25fce4"
+    },
+    {
+      "path": "reduction-log.jsonl",
+      "bytes": 3102,
+      "sha256": "d2015893475f20490013dae94705268457035f92d28cd24cf740cfef9c6c80ac"
+    },
+    {
+      "path": "privacy-report.json",
+      "bytes": 1032,
+      "sha256": "41dbc4804a24ba17dd75c50c879ef027efd988b24abf54c48f4b03f628bc8cd1"
+    },
+    {
+      "path": "observations/navigation.json",
+      "bytes": 593,
+      "sha256": "f66f9c05cd4d00a6326c158bdddf17d6ea4a529ad7ab435b717ad92446bab7f1"
+    },
+    {
+      "path": "evidence/navigation-witness.svg",
+      "bytes": 1861,
+      "sha256": "c21d13fe28fc5afd11090458186bae11b0721b4fb98f01c6841f541c57ba20c3"
+    },
+    {
+      "path": "replay-reference.txt",
+      "bytes": 92,
+      "sha256": "2f0a25ab38b2d4398e4fda4d13e1192f0085891fef12c7424046f30c226db573"
+    }
+  ],
+  "limitations": [
+    "The local witness models one deterministic encoded-fragment navigation failure.",
+    "The bundle lowers sharing risk but is not a legal guarantee.",
+    "A Solari replay exists only when the live adapter was executed with authorized credentials."
+  ]
+}

@@ -1,6 +1,6 @@
 # 05: Build the ReproPub review dashboard
 
-Status: ready-for-agent
+Status: in-progress
 
 Blocked by: 03
 

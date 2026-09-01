@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import { inspectPublication } from "./core/epub.js";
-import { runDemoPipeline, verifyBundle } from "./core/pipeline.js";
+import { runDemoPipeline, runSolariDemoPipeline, verifyBundle } from "./core/pipeline.js";
 
 function option(args: readonly string[], name: string): string | undefined {
   const index = args.indexOf(name);
@@ -16,6 +16,7 @@ function usage(): string {
 
 Usage:
   repropub demo [--output .tmp/repropub/demo-bundle] [--json]
+  repropub solari-demo [--output .tmp/repropub/solari-bundle] [--json]
   repropub inspect <publication.epub>
   repropub verify <bundle-directory>
 `;
@@ -43,6 +44,27 @@ async function main(): Promise<void> {
         `ReproPub ${result.verdict}`,
         `run: ${result.runId}`,
         `size: ${result.sizes.original.toLocaleString("en-US")} → ${result.sizes.reduced.toLocaleString("en-US")} bytes (${reduction}% smaller)`,
+        `bundle: ${relative}`,
+      ].join("\n") + "\n",
+    );
+    return;
+  }
+
+  if (command === "solari-demo") {
+    const outputDir = option(args, "--output") ?? ".tmp/repropub/solari-bundle";
+    const result = await runSolariDemoPipeline({
+      apiKey: process.env.SOLARI_API_KEY,
+      outputDir,
+    });
+    if (args.includes("--json")) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      return;
+    }
+    const relative = path.relative(process.cwd(), path.resolve(outputDir));
+    process.stdout.write(
+      [
+        `ReproPub live Solari ${result.verdict}`,
+        `run: ${result.runId}`,
         `bundle: ${relative}`,
       ].join("\n") + "\n",
     );

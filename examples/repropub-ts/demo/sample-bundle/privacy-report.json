@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "sourceHash": "9a32ba6abe9e1da9906512c24e81e75874097156af68750c8d4b178ac60d81f8",
+  "sanitizedHash": "8740b890f0f951d1335af5acc72ef8381f4404ea19475e5d273a1f9b66db5af4",
+  "inspectedSensitiveValues": 27,
+  "remainingSensitiveValues": 0,
+  "actions": [
+    {
+      "category": "metadata",
+      "count": 5,
+      "action": "replaced with deterministic synthetic metadata"
+    },
+    {
+      "category": "prose",
+      "count": 22,
+      "action": "replaced text nodes while preserving element structure and identifiers"
+    },
+    {
+      "category": "remote-url",
+      "count": 1,
+      "action": "removed or neutralized remote references"
+    },
+    {
+      "category": "script",
+      "count": 1,
+      "action": "removed script resources and script elements"
+    },
+    {
+      "category": "image",
+      "count": 1,
+      "action": "replaced artwork with a neutral generated image"
+    },
+    {
+      "category": "event-handler",
+      "count": 1,
+      "action": "removed inline event handlers"
+    }
+  ]
+}

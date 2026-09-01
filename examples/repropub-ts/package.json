@@ -7,21 +7,47 @@
   "scripts": {
     "clean": "rm -rf .build dist .tmp/repropub",
     "build:core": "tsc -p tsconfig.core.json",
+    "build:web": "vite build",
+    "build": "npm run build:core && npm run build:web",
     "typecheck:core": "tsc -p tsconfig.core.json --noEmit",
+    "typecheck:web": "tsc -p tsconfig.web.json --noEmit",
+    "typecheck": "npm run typecheck:core && npm run typecheck:web",
     "test:core": "npm run build:core && node --test .build/tests/*.test.js",
     "check:core": "npm run typecheck:core && npm run test:core",
+    "check": "npm run typecheck && npm run test:core",
     "demo": "npm run build:core && node .build/src/cli.js demo",
     "inspect": "npm run build:core && node .build/src/cli.js inspect",
-    "verify:demo": "npm run build:core && node .build/src/cli.js verify .tmp/repropub/demo-bundle"
+    "verify:demo": "npm run build:core && node .build/src/cli.js verify .tmp/repropub/demo-bundle",
+    "solari-demo": "npm run build:core && node .build/src/cli.js solari-demo",
+    "dev": "vite --host 127.0.0.1",
+    "serve": "npm run build && node .build/src/server.js",
+    "start": "node .build/src/server.js",
+    "test:browser": "node scripts/browser-smoke.mjs"
   },
   "engines": {
-    "node": ">=22"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.0",
-    "typescript": "^5.8.3"
+    "node": ">=22.12"
   },
   "bin": {
     "repropub": "./.build/src/cli.js"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "@solarisdk/browser": "^0.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
+    "motion": "^11.15.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "playwright": "^1.62.0"
   }
 }

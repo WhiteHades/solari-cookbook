@@ -269,7 +269,7 @@ export async function reducePublication(input: ReduceInput): Promise<ReductionRe
             ? "candidate did not reduce the archive"
             : `candidate verdict was ${witness.verdict}`,
       });
-      if (accepted) current = candidate;
+      if (accepted) current = Buffer.from(candidate);
     } catch (error) {
       decisions.push({
         sequence: decisions.length + 1,

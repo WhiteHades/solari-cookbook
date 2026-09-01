@@ -68,6 +68,7 @@ interface PublishBundleInput {
   readonly cleanup: CleanupReceipt;
   readonly durationMs: number;
   readonly replayReference?: string;
+  readonly extraArtifacts?: readonly { readonly path: string; readonly data: string | Buffer }[];
 }
 
 export interface BundleVerification {
@@ -232,6 +233,9 @@ export async function publishBundle(input: PublishBundleInput): Promise<ReproRec
   await writeArtifact(bundleDir, "observations/navigation.json", observationJson);
   await writeArtifact(bundleDir, "evidence/navigation-witness.svg", evidenceSvg);
   await writeArtifact(bundleDir, "replay-reference.txt", replayReference);
+  for (const artifact of input.extraArtifacts ?? []) {
+    await writeArtifact(bundleDir, artifact.path, artifact.data);
+  }
 
   const artifactPaths = [
     "repro.epub",
@@ -241,7 +245,8 @@ export async function publishBundle(input: PublishBundleInput): Promise<ReproRec
     "observations/navigation.json",
     "evidence/navigation-witness.svg",
     "replay-reference.txt",
-  ] as const;
+    ...(input.extraArtifacts ?? []).map((artifact) => artifact.path),
+  ];
   const artifacts = await Promise.all(artifactPaths.map((artifactPath) => artifactReceipt(bundleDir, artifactPath)));
 
   const receipt: ReproReceipt = {
