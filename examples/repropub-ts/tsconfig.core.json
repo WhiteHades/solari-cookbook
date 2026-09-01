@@ -13,7 +13,13 @@
     "outDir": ".build",
     "declaration": true,
     "sourceMap": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src/core/**/*.ts", "tests/**/*.ts"]
+  "include": [
+    "src/core/**/*.ts",
+    "src/cli.ts",
+    "tests/**/*.ts"
+  ]
 }

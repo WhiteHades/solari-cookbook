@@ -9,7 +9,10 @@
     "build:core": "tsc -p tsconfig.core.json",
     "typecheck:core": "tsc -p tsconfig.core.json --noEmit",
     "test:core": "npm run build:core && node --test .build/tests/*.test.js",
-    "check:core": "npm run typecheck:core && npm run test:core"
+    "check:core": "npm run typecheck:core && npm run test:core",
+    "demo": "npm run build:core && node .build/src/cli.js demo",
+    "inspect": "npm run build:core && node .build/src/cli.js inspect",
+    "verify:demo": "npm run build:core && node .build/src/cli.js verify .tmp/repropub/demo-bundle"
   },
   "engines": {
     "node": ">=22"
@@ -17,5 +20,8 @@
   "devDependencies": {
     "@types/node": "^22.15.0",
     "typescript": "^5.8.3"
+  },
+  "bin": {
+    "repropub": "./.build/src/cli.js"
   }
 }

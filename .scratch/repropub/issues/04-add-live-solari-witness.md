@@ -1,6 +1,6 @@
 # 04: Add the live Solari witness
 
-Status: ready-for-agent
+Status: in-progress
 
 Blocked by: 03
 
