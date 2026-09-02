@@ -1,0 +1,116 @@
+name: ReproPub release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/repropub-release.yml"
+      - "examples/repropub-ts/RELEASE_NOTES.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repropub-v0.1.0-rc.1-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: examples/repropub-ts
+    env:
+      TAG: repropub-v0.1.0-rc.1
+      TITLE: ReproPub v0.1.0-rc.1
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify source and generate evidence
+        run: |
+          npm run check
+          npm run demo
+          npm run verify:demo
+          npm run build
+          npm run test:browser
+
+      - name: Package verified release assets
+        run: |
+          set -euo pipefail
+          release_dir=".tmp/repropub/release"
+          bundle_dir=".tmp/repropub/demo-bundle"
+          browser_dir=".tmp/repropub/browser-smoke"
+          mkdir -p "$release_dir"
+
+          (
+            cd "$bundle_dir"
+            zip -qr "../release/${TAG}-evidence.zip" .
+          )
+
+          cp "$bundle_dir/repro.epub" "$release_dir/${TAG}-repro.epub"
+          cp "$bundle_dir/receipt.json" "$release_dir/${TAG}-receipt.json"
+          cp "$browser_dir/dashboard-result.png" "$release_dir/${TAG}-dashboard-desktop.png"
+          cp "$browser_dir/dashboard-mobile.png" "$release_dir/${TAG}-dashboard-mobile.png"
+
+          (
+            cd "$release_dir"
+            sha256sum \
+              "${TAG}-evidence.zip" \
+              "${TAG}-repro.epub" \
+              "${TAG}-receipt.json" \
+              "${TAG}-dashboard-desktop.png" \
+              "${TAG}-dashboard-mobile.png" \
+              > SHA256SUMS.txt
+          )
+
+      - name: Publish GitHub prerelease
+        run: |
+          set -euo pipefail
+          release_dir=".tmp/repropub/release"
+          notes="$GITHUB_WORKSPACE/examples/repropub-ts/RELEASE_NOTES.md"
+
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit "$TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "$TITLE" \
+              --notes-file "$notes" \
+              --prerelease
+            gh release upload "$TAG" "$release_dir"/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --clobber
+          else
+            gh release create "$TAG" "$release_dir"/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --title "$TITLE" \
+              --notes-file "$notes" \
+              --prerelease
+          fi
+
+      - name: Upload workflow proof
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: repropub-release-proof-${{ github.run_id }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            examples/repropub-ts/.tmp/repropub/demo-bundle
+            examples/repropub-ts/.tmp/repropub/browser-smoke
+            examples/repropub-ts/.tmp/repropub/release
