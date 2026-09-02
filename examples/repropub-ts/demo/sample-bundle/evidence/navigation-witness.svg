@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">ReproPub navigation witness: PRESERVED</title>
+  <desc id="description">The reader requested target%20section, looked up target%20section, observed chapter-2, and expected target section.</desc>
+  <rect width="1200" height="630" rx="40" fill="#07111f"/>
+  <rect x="54" y="54" width="1092" height="522" rx="28" fill="#0f1d2e" stroke="#28405d"/>
+  <text x="94" y="128" fill="#9fb4cc" font-family="ui-monospace, monospace" font-size="24">REPROPUB / EXECUTED NAVIGATION WITNESS</text>
+  <text x="94" y="210" fill="#f8fafc" font-family="ui-sans-serif, sans-serif" font-weight="700" font-size="54">PRESERVED</text>
+  <text x="94" y="280" fill="#9fb4cc" font-family="ui-sans-serif, sans-serif" font-size="24">requested fragment</text>
+  <text x="420" y="280" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="24">target%20section</text>
+  <text x="94" y="340" fill="#9fb4cc" font-family="ui-sans-serif, sans-serif" font-size="24">reader lookup</text>
+  <text x="420" y="340" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="24">target%20section</text>
+  <text x="94" y="400" fill="#9fb4cc" font-family="ui-sans-serif, sans-serif" font-size="24">observed target</text>
+  <text x="420" y="400" fill="#fb7185" font-family="ui-monospace, monospace" font-size="24">chapter-2</text>
+  <text x="94" y="460" fill="#9fb4cc" font-family="ui-sans-serif, sans-serif" font-size="24">expected target</text>
+  <text x="420" y="460" fill="#5eead4" font-family="ui-monospace, monospace" font-size="24">target section</text>
+  <text x="94" y="530" fill="#6f8baa" font-family="ui-sans-serif, sans-serif" font-size="20">Verdict derived from the recorded observation, not an AI assertion.</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "kind": "navigation-target",
+  "scenarioId": "encoded-fragment-navigation",
+  "targetReaderId": "fixture-reader@legacy-fragment-resolver",
+  "navigationLabel": "Synthetic text 4.",
+  "requestedHref": "chapter-2.xhtml#target%20section",
+  "requestedFragment": "target%20section",
+  "lookupFragment": "target%20section",
+  "targetPath": "EPUB/chapter-2.xhtml",
+  "expectedTargetId": "target section",
+  "reportedObservedTargetId": "chapter-2",
+  "observedTargetId": "chapter-2",
+  "observedHeading": "Synthetic text 2.",
+  "availableTargetIds": [
+    "chapter-2",
+    "target section"
+  ]
+}

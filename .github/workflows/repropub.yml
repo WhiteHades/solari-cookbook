@@ -1,0 +1,67 @@
+name: ReproPub
+
+on:
+  push:
+    branches: [main, feat/repropub]
+    paths:
+      - "examples/repropub-ts/**"
+      - ".scratch/repropub/**"
+      - ".github/workflows/repropub.yml"
+  pull_request:
+    paths:
+      - "examples/repropub-ts/**"
+      - ".scratch/repropub/**"
+      - ".github/workflows/repropub.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repropub-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/repropub-ts
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Typecheck and run core tests
+        run: npm run check
+
+      - name: Generate and verify demo bundle
+        run: npm run demo && npm run verify:demo
+
+      - name: Build dashboard
+        run: npm run build
+
+      - name: Run browser smoke journey
+        run: npm run test:browser
+
+      - name: Upload proof artifacts
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: repropub-proof-${{ github.run_id }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            examples/repropub-ts/.tmp/repropub/demo-bundle
+            examples/repropub-ts/.tmp/repropub/browser-smoke

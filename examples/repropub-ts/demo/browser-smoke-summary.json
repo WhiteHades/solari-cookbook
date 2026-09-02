@@ -1,0 +1,12 @@
+{
+  "origin": "http://127.0.0.1:4174",
+  "verdict": "PRESERVED",
+  "decisionCount": 9,
+  "artifactCount": 7,
+  "screenshots": [
+    "dashboard-initial.png",
+    "dashboard-result.png",
+    "dashboard-mobile.png"
+  ],
+  "consoleErrors": []
+}

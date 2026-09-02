@@ -7,6 +7,12 @@ Every example in this repo is a complete program you can run in under a minute.
 They are deliberately small: one idea each, no framework, no scaffolding to read
 past. Copy one into your project and change the parts you care about.
 
+## Featured submission: ReproPub
+
+[![ReproPub completed-run dashboard](examples/repropub-ts/demo/dashboard-result.png)](examples/repropub-ts)
+
+**[ReproPub](examples/repropub-ts)** turns a hard-to-share EPUB bug into a small synthetic reproduction, then proves the same failure still occurs. The verified local sample reduced a synthetic EPUB from 5,629 to 2,325 bytes, removed every inspected sensitive value, and published a hashed evidence bundle. A live adapter uses an isolated Solari Sandbox and an independent recorded Solari Browser; that path is implemented and protocol-tested, while the committed proof is explicitly local because no authorized Solari key was available during this build.
+
 ## Examples
 
 ### Cloud browser
@@ -26,6 +32,12 @@ past. Copy one into your project and change the parts you care about.
 | [sandbox-quickstart-ts](examples/sandbox-quickstart-ts) | TypeScript | Run a command, write and read files |
 | [sandbox-code-interpreter-py](examples/sandbox-code-interpreter-py) | Python | Stateful Python kernel for agent loops |
 | [sandbox-port-preview-ts](examples/sandbox-port-preview-ts) | TypeScript | Expose a server in the VM on a public URL |
+
+### Multi-product
+
+| Example | Language | What it shows |
+| --- | --- | --- |
+| [repropub-ts](examples/repropub-ts) | TypeScript | Sanitize and reduce an EPUB while Sandbox + recorded Browser independently verify the failure |
 
 ### Desktop
 
