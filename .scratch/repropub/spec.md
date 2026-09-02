@@ -1,6 +1,6 @@
 # ReproPub specification
 
-Status: ready-for-agent
+Status: implemented
 
 ## Problem statement
 
@@ -56,3 +56,9 @@ DRM, legal guarantees, private repositories, automatic code fixes, mobile or pro
 - Core checks and Chromium smoke flow pass.
 - Live Solari adapters are implemented against official interfaces and fail safely without credentials.
 - The product README states exactly which paths were and were not executed.
+
+## Completion evidence
+
+The implementation is complete for this first-release scope. Pull-request workflow run `33581065283` passed on the merge ref with 11 focused tests, deterministic demo generation, seven-artifact verification, a production build, and desktop plus 390 px mobile Chromium journeys. The standards and specification review in `docs/repropub/final-review.md` found no unresolved high-severity issue.
+
+A credentialed live Solari run and real-user product-market-fit evidence remain external validation gates. They are intentionally not described as completed until an authorized key and real users exist.
